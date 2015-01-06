@@ -1,22 +1,22 @@
-var pick = require('101/pick'),
+var omit = require('101/omit'),
     through = require('through'),
     assign = require('101/assign'),
     Combiner = require('stream-combiner'),
     geojsonStream = require('geojson-stream');
 
-module.exports = pickStream;
-module.exports.pickProperties = pickProperties;
+module.exports = unpickStream;
+module.exports.unpickProperties = unpickProperties;
 
-function pickStream(properties) {
+function unpickStream(properties) {
     return Combiner(geojsonStream.parse(),
         through(function(feature, callback) {
-            this.queue(pickProperties(feature, properties));
+            this.queue(unpickProperties(feature, properties));
         }),
         geojsonStream.stringify());
 }
 
-function pickProperties(feature, properties) {
+function unpickProperties(feature, properties) {
     return assign({}, feature, {
-        properties: pick(feature.properties, properties)
+        properties: omit(feature.properties, properties)
     });
 }

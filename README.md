@@ -1,11 +1,11 @@
-# geojson-pick
+# geojson-unpick
 
-Pick properties from features in a GeoJSON FeatureCollection.
+Does the opposite of [geojson-pick](https://www.npmjs.com/package/geojson-pick): Unpick properties from features in a GeoJSON FeatureCollection.
 
 ## install
 
-    npm install -g geojson-pick
+    npm install -g geojson-unpick
 
 ## usage
 
-    geojson-pick PROPERTYNAME1 < file.geojson > output.geojson
+    geojson-unpick PROPERTYNAME1 < file.geojson > output.geojson
